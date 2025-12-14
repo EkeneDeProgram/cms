@@ -1,0 +1,7 @@
+/**
+ * career-growth router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::career-growth.career-growth');
