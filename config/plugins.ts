@@ -1,5 +1,3 @@
-// export default () => ({});
-
 // export default ({ env }) => ({
 //   upload: {
 //     config: {
@@ -13,8 +11,6 @@
 //         upload: {},
 //         delete: {},
 //       },
-
-//       // Upload security belongs HERE in Strapi v5
 //       security: {
 //         maxFileSize: 10 * 1024 * 1024, // 10MB
 //         allowedMimeTypes: [
@@ -27,7 +23,20 @@
 //       },
 //     },
 //   },
+
+//   // THIS FIXES YOUR DEPLOY CRASH
+//   'users-permissions': {
+//     config: {
+//       jwtSecret: env('USERS_PERMISSIONS_JWT_SECRET'),
+//     },
+//   },
 // });
+
+
+
+
+
+
 
 
 
@@ -47,20 +56,9 @@ export default ({ env }) => ({
         upload: {},
         delete: {},
       },
-      security: {
-        maxFileSize: 10 * 1024 * 1024, // 10MB
-        allowedMimeTypes: [
-          'image/jpeg',
-          'image/png',
-          'image/webp',
-          'image/gif',
-          'image/svg+xml',
-        ],
-      },
     },
   },
 
-  // THIS FIXES YOUR DEPLOY CRASH
   'users-permissions': {
     config: {
       jwtSecret: env('USERS_PERMISSIONS_JWT_SECRET'),
