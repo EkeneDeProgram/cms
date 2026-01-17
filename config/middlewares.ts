@@ -41,17 +41,12 @@
 
 
 
-
 export default [
-  // Logger for requests
-  'strapi::logger',
+  'strapi::logger',        // logging requests
+  'strapi::errors',        // error handling
 
-  // Error handler
-  'strapi::errors',
-
-  // Security middleware with content security policy
   {
-    name: 'strapi::security',
+    name: 'strapi::security',  // security headers and CSP
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
@@ -60,42 +55,35 @@ export default [
             "'self'",
             'data:',
             'blob:',
-            'https://res.cloudinary.com', // allow Cloudinary images
+            'https://res.cloudinary.com',
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
-            'https://res.cloudinary.com', // allow Cloudinary media
+            'https://res.cloudinary.com',
           ],
         },
       },
     },
   },
 
-  // Enable CORS
-  'strapi::cors',
+  'strapi::cors',          // enable CORS
+  'strapi::poweredBy',     // X-Powered-By header
 
-  // Add X-Powered-By header
-  'strapi::poweredBy',
+  'strapi::query',         // ⚠ MUST be here, required for API queries
 
-  // Body parser middleware with 10MB limits
   {
-    name: 'strapi::body',
+    name: 'strapi::body',  // body parser for uploads & JSON
     config: {
-      multipart: true,        // enable multipart form-data (uploads)
-      formLimit: '10mb',      // max size for form submissions
-      jsonLimit: '10mb',      // max size for JSON bodies
-      textLimit: '10mb',      // max size for text bodies
+      multipart: true,
+      formLimit: '10mb',
+      jsonLimit: '10mb',
+      textLimit: '10mb',
     },
   },
 
-  // Session support
-  'strapi::session',
-
-  // Favicon support
-  'strapi::favicon',
-
-  // Serve static files from /public
-  'strapi::public',
+  'strapi::session',       // session support
+  'strapi::favicon',       // favicon
+  'strapi::public',        // static files
 ];
